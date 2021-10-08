@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import StudentList from './Components/Students/StudentList';
+import NameFilter from './Components/NameFilter';
+import TagFilter from './Components/TagFilter';
 
 function App() {
+  const [studentList, setStudentList] = useState();
+
+  const nameFilterHandler = () => {
+    setStudentList((prevList) => {
+      prevList.filter((students) => students.includes(NameFilter));
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <NameFilter onNameFilterChange={nameFilterHandler} />
+      <TagFilter />
+      {/* <ExpandView/> */}
+      <StudentList students={studentList} />
+    </React.Fragment>
   );
 }
 

@@ -1,0 +1,20 @@
+.search {
+  display: fixed;
+  top: 0;
+  left: 0;
+  border: none;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  outline: none;
+}
+
+::placeholder {
+  color: #aaa;
+}
+
+:focus {
+  outline: 1px solid #444;
+}
