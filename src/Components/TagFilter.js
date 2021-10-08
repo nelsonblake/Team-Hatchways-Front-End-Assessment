@@ -11,7 +11,7 @@ const TagFilter = ({ onTagFilterChange }) => {
         onChange={(event) =>
           onTagFilterChange(event.target.value.toLowerCase().trim())
         }
-        placeholder="Search by name.."
+        placeholder="Search by tag.."
         className={styles.search}
       />
     </form>
