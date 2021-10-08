@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import styles from './NameFilter.module.css';
 
-const NameFilter = (props) => {
-  const [nameFilter, setNameFilter] = useState('');
-  const [foundNames, setFoundNames] = useState('');
-
+const NameFilter = ({ onNameFilterChange }) => {
   return (
     <form className={styles.search}>
       <input
         id="nameFilter"
         name="filter"
         type="search"
-        value={nameFilter}
-        onChange={(event) => setNameFilter(event.target.value)}
+        onChange={(event) =>
+          onNameFilterChange(event.target.value.toLowerCase().trim())
+        }
         placeholder="Search by name.."
         className={styles.search}
       />

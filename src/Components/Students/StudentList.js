@@ -1,61 +1,64 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './StudentList.module.css';
 import Card from '../UI/Card';
 
-const StudentList = (props) => {
-  const [students, setStudents] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
-
-  useEffect(() => {
-    setLoading(true);
-    fetch('https://api.hatchways.io/assessment/students')
-      .then((res) => res.json())
-      .then((students) => {
-        setStudents(Object.values(students)[0]);
-      })
-      .catch((err) => {
-        setError(err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
-    return <p>Data is loading...</p>;
-  }
-
-  if (error || !Array.isArray(students)) {
-    return <p>There was an error loading your data!</p>;
-  }
-
+const StudentList = ({
+  index,
+  img,
+  firstName,
+  lastName,
+  email,
+  company,
+  skill,
+  averageGrade,
+  grades,
+  tags,
+  addTag,
+}) => {
+  const [showGrades, setShowGrades] = useState(false);
   return (
-    <ul>
-      {students.map((student) => (
-        <Card key={student.id}>
-          <li key={student.id}>
-            <img src={student.pic} alt="logo" />
-            <div>
-              <h1>
-                {student.firstName.toUpperCase()}{' '}
-                {student.lastName.toUpperCase()}
-              </h1>
-              <h3>Email: {student.email}</h3>
-              <h3>Skill: {student.skill}</h3>
-              <h3>Company: {student.company}</h3>
-              <h3>
-                Average:{' '}
-                {Object.values(student.grades)
-                  .map((entry) => Number(entry))
-                  .reduce((a, b) => a + b) / student.grades.length}
-                %
-              </h3>
-            </div>
-          </li>
-        </Card>
-      ))}
-    </ul>
+    <Card>
+      <li>
+        <img src={img} alt="avatar" />
+        <div>
+          <h1>{`${firstName.toUpperCase()} ${lastName.toUpperCase()}`}</h1>
+          <h3>Email: {email}</h3>
+          <h3>Company: {company}</h3>
+          <h3>Skill: {skill}</h3>
+          <h3>Average: {averageGrade}%</h3>
+          {/* {showGrades && (
+          <div className={styles.extendedContent}>
+            {grades.map((grade, index) => {
+              return (
+                <div key={index.toString()}>
+                  {`test${index}:\xa0\xa0\xa0\xa0\xa0\xa0${grade}%`}
+                </div>
+              );
+            })}
+            {tags.length > 0
+              ? tags.map((tag, index) => {
+                  return <Tag key={index.toString()} tag={tag} />;
+                })
+              : null}
+            <TagForm index={index} addTag={addTag} />
+          </div>
+        )} */}
+        </div>
+      </li>
+      {/* {showGrades ? (
+        <CloseIcon
+          className={styles.expandBtn}
+          setShowGrades={setShowGrades}
+          showGrades={showGrades}
+        />
+      ) : (
+        <OpenIcon
+          className={styles.expandBtn}
+          setShowGrades={setShowGrades}
+          showGrades={showGrades}
+        />
+      )} */}
+    </Card>
   );
 };
 export default StudentList;
