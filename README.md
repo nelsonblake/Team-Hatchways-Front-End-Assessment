@@ -8,6 +8,7 @@ Please read the following details before you click 'Mark as Done' to your submis
 
 ```bash
 git clone https://github.com/<username>/<repo-name>.git
+I needed to cd into student-profile-8572
 npm install # or yarn install
 npm start
 ```
