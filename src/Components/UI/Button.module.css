@@ -1,0 +1,26 @@
+.button {
+  width: 4rem;
+  height: 4rem;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  font: inherit;
+  background: #fff;
+  color: #ccc;
+  padding: 1rem 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 20px;
+  border: 1px dotted #999;
+}
+
+.button:hover,
+.button:active {
+  background: #999;
+  border: 1px dotted #999;
+}
+
+.button:focus {
+  border: 1px dotted #999;
+}

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './NameFilter.module.css';
 
-const NameFilter = ({ onNameFilterChange }) => {
+const NameFilter = (props) => {
   return (
     <form className={styles.search}>
       <input
@@ -9,7 +9,7 @@ const NameFilter = ({ onNameFilterChange }) => {
         name="filter"
         type="search"
         onChange={(event) =>
-          onNameFilterChange(event.target.value.toLowerCase().trim())
+          props.onNameFilterChange(event.target.value.toLowerCase().trim())
         }
         placeholder="Search by name.."
         className={styles.search}
