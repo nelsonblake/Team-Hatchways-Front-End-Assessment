@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StudentList from './Components/Students/StudentList';
-import NameFilter from './Components/NameFilter';
-import TagFilter from './Components/TagFilter';
+import InfoFilter from './Components/InfoFilter';
 
 function App() {
   ////////////////////////////////////////////////
@@ -17,7 +16,7 @@ function App() {
     const response = await fetch(url);
     const json = await response.json();
     let newStudentData = [];
-    // Will be empty for now, but prepare for when we add tags
+    // empty until we add tags
     json.students.forEach((student) => {
       let addTags = student;
       addTags.tags = [];
@@ -112,8 +111,8 @@ function App() {
 
   return (
     <React.Fragment>
-      <NameFilter onNameFilterChange={nameFilterHandler} />
-      <TagFilter onTagFilterChange={tagFilterHandler} />
+      <InfoFilter onFilterChange={nameFilterHandler} type={'name'} />
+      <InfoFilter onFilterChange={tagFilterHandler} type={'tag'} />
       {filterContent.map((student, index) => {
         function findAverage(array) {
           let sum = 0;

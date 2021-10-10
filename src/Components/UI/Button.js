@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './Button.module.css';
 
+// Reusable button component that I like to use
+
 const Button = (props) => {
   return (
     <button
