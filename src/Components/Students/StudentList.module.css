@@ -49,7 +49,84 @@ ul {
 
 .hiddenContent {
   margin-left: 1rem;
-  font-family: 'Raleway', sans-serif;
   font-weight: 100;
-  font-size: 16px;
+  font-size: 18px;
+}
+
+/* smartphones */
+@media (max-width: 525px) {
+  .listItem {
+    text-align: center;
+    display: grid;
+    max-width: 100vw;
+    grid-template-columns: 0.5fr 1fr;
+    grid-template-rows: min-content, 1fr;
+    grid-gap: 5px;
+    grid-template-areas:
+      'image  .'
+      'name .'
+      'btn info';
+    padding: 16px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+
+  .info {
+    font-size: 14px;
+  }
+
+  .image {
+    width: 75px;
+    height: 75px;
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .hiddenContent {
+    margin-left: 1rem;
+    font-weight: 100;
+    font-size: 14px;
+  }
+}
+
+/* really tiny screen */
+@media (max-width: 350px) {
+  .listItem {
+    text-align: center;
+    display: grid;
+    max-width: 100vw;
+    grid-template-columns: 0.5fr 1fr;
+    grid-template-rows: min-content, 1fr;
+    grid-gap: 5px;
+    grid-template-areas:
+      'image  .'
+      'name .'
+      'btn info';
+    padding: 16px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .name {
+    font-size: 16px;
+  }
+
+  .info {
+    font-size: 12px;
+  }
+
+  .image {
+    width: 50px;
+    height: 50px;
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .hiddenContent {
+    margin-left: 1rem;
+    font-weight: 100;
+    font-size: 12px;
+  }
 }
