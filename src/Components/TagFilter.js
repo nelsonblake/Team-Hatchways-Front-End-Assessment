@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './TagFilter.module.css';
 
-const TagFilter = ({ onTagFilterChange }) => {
+const TagFilter = (props) => {
   return (
     <form className={styles.search}>
       <input
@@ -9,7 +9,7 @@ const TagFilter = ({ onTagFilterChange }) => {
         name="filter"
         type="search"
         onChange={(event) =>
-          onTagFilterChange(event.target.value.toLowerCase().trim())
+          props.onTagFilterChange(event.target.value.toLowerCase().trim())
         }
         placeholder="Search by tag.."
         className={styles.search}

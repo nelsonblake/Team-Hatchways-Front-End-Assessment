@@ -1,0 +1,25 @@
+.input {
+  width: 50%;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border: none;
+  border-bottom: 1px solid #333;
+  height: 24px;
+  margin-top: 12px;
+  padding-left: 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.input::-webkit-input-placeholder {
+  font-size: 12px;
+  line-height: 3;
+  color: #ccc;
+}
+
+input:focus {
+  border-bottom: 1px solid #333;
+}
+
+.tagSubmit {
+  visibility: hidden;
+}

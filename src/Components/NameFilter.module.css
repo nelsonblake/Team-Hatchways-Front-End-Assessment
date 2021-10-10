@@ -10,8 +10,12 @@
   outline: none;
 }
 
-::placeholder {
-  color: #aaa;
+::-webkit-input-placeholder {
+  color: #ccc;
+}
+
+::-webkit-search-cancel-button {
+  display: none;
 }
 
 :focus {

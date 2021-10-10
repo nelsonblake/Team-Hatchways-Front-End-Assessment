@@ -4,16 +4,41 @@ import NameFilter from './Components/NameFilter';
 import TagFilter from './Components/TagFilter';
 
 function App() {
+  ////////////////////////////////////////////////
+  // States
   const [studentData, setStudentData] = useState([]);
   const [filterContent, setFilterContent] = useState([]);
   const [nameFilter, setNameFilter] = useState([]);
   const [tagFilter, setTagFilter] = useState([]);
 
+  ///////////////////////////////////////////////
+  //API call
+  async function fetchUrl(url) {
+    const response = await fetch(url);
+    const json = await response.json();
+    let newStudentData = [];
+    // Will be empty for now, but prepare for when we add tags
+    json.students.forEach((student) => {
+      let addTags = student;
+      addTags.tags = [];
+      newStudentData.push(addTags);
+    });
+    setStudentData(newStudentData);
+    setFilterContent(newStudentData);
+    setNameFilter(newStudentData);
+    setTagFilter(newStudentData);
+  }
+  useEffect(() => {
+    fetchUrl(`https://www.hatchways.io/api/assessment/students`);
+  }, []);
+
+  ///////////////////////////////////////////////
   // Filter Functions
+  ////////////
   // Name
   const nameFilterHandler = (nameInput) => {
     let newNameFilter = [];
-    studentData.map((student) => {
+    studentData.forEach((student) => {
       // eliminate case sensitivity
       const fullName = `${student.firstName} ${student.lastName}`.toLowerCase();
       // Push if includes the substring
@@ -22,7 +47,7 @@ function App() {
       }
     });
     let contentFilter = [];
-    tagFilter.map((student) => {
+    tagFilter.forEach((student) => {
       // eliminate case sensitivity
       const fullName = `${student.firstName} ${student.lastName}`.toLowerCase();
       if (fullName.includes(nameInput)) {
@@ -34,15 +59,15 @@ function App() {
     setFilterContent(contentFilter);
     setNameFilter(newNameFilter);
   };
-
+  /////////////
   // Tag
   const tagFilterHandler = (tagInput) => {
     if (tagInput) {
       let newTagFilter = [];
       let newContentFilter = [];
-      studentData.map((student) => {
+      studentData.forEach((student) => {
         let tagged = false;
-        student.tags.map((tag) => {
+        student.tags.forEach((tag) => {
           // push if includes substring
           if (tag.includes(tagInput)) {
             // tag flag
@@ -53,9 +78,9 @@ function App() {
           newTagFilter.push(student);
         }
       });
-      filterContent.map((student) => {
+      filterContent.forEach((student) => {
         let tagged = false;
-        student.tags.map((tag) => {
+        student.tags.forEach((tag) => {
           // push if includes substring
           if (tag.includes(tagInput)) {
             // tag flag
@@ -77,24 +102,13 @@ function App() {
     }
   };
 
-  //API call
-  async function fetchUrl(url) {
-    const response = await fetch(url);
-    const json = await response.json();
-    let newStudentData = [];
-    json.students.map((student) => {
-      let addTags = student;
-      addTags.tags = [];
-      newStudentData.push(addTags);
-    });
-    setStudentData(newStudentData);
-    setFilterContent(newStudentData);
-    setNameFilter(newStudentData);
-    setTagFilter(newStudentData);
-  }
-  useEffect(() => {
-    fetchUrl(`https://www.hatchways.io/api/assessment/students`);
-  }, []);
+  ///////////////////////////////////////////////
+  // AddTag
+  const addTag = (tag, index) => {
+    const studentDataTag = [...studentData];
+    studentDataTag[index].tags.push(tag);
+    setStudentData(studentDataTag);
+  };
 
   return (
     <React.Fragment>
@@ -123,8 +137,7 @@ function App() {
             grades={student.grades}
             averageGrade={averageGrade}
             tags={student.tags}
-            // for when we add the addtag functionality
-            // addTag={addTag}
+            addTag={addTag}
           />
         );
       })}
