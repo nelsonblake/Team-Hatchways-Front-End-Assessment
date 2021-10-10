@@ -8,7 +8,6 @@ Please read the following details before you click 'Mark as Done' to your submis
 
 ```bash
 git clone https://github.com/<username>/<repo-name>.git
-cd my-app
 npm install # or yarn install
 npm start
 ```
